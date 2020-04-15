@@ -1,0 +1,32 @@
+###----------------- DNS -------------------###
+domain-needed
+bogus-priv
+
+domain=yourdomain.lan
+expand-hosts
+local=/yourdomain.lan/
+
+listen-address=127.0.0.1
+listen-address=192.168.100.253
+
+#DNS SERVER FORWARDING
+no-resolv
+server=1.1.1.1
+server=1.0.0.1
+
+log-queries
+log-facility=/var/log/query.log
+cache-size=350
+
+###------------DHCP-------------- ###
+#MONITOR LEASES --> cat /var/lib/misc/dnsmasq.leases
+#DHCP RANGE
+dhcp-range=eth0,192.168.100.100,192.168.100.150,8h
+#GATEWAY LAN
+dhcp-option=3,192.168.100.254
+#DNS SERVER (PRIMARY AND SECONDARY DNS FOR LAN)
+dhcp-option=6,192.168.100.253,192.168.100.253
+#NTP SERVER (inrim.it)
+dhcp-option=42,193.204.114.232
+#BROADCAST ADDRESS OF LAN
+dhcp-option=28,192.168.100.255

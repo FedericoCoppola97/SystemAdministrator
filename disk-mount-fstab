@@ -1,0 +1,17 @@
+######## HOW TO MOUNT DISK USING FSTAB ###########
+
+1)Ottenere il codice univoco identificativo del disco (UUID)
+sudo blkid  --> per ottenere UUID
+
+Esempio di output 
+sudo blkid
+/dev/sda1: UUID="a3c88ac7-2aaa-457f-92e5-e2c9053f17d7" TYPE="ext4" PARTUUID="435b45a0-01"
+
+
+2)Editare il file fstab
+sudo nano /etc/fstab
+
+3)Aggiungere stringa che indica il mount alla fine del file
+UUID=a3c88ac7-2aaa-457f-92e5-e2c9053f17d7  /mnt/disk1  ext4  defaults  0  2
+
+Fine!

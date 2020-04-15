@@ -2,10 +2,12 @@
 domain-needed
 bogus-priv
 
+#DOMAIN NAME OF MY LAN
 domain=yourdomain.lan
 expand-hosts
 local=/yourdomain.lan/
 
+#LISTEN ADDRESS (localhost and IP Address of Server)
 listen-address=127.0.0.1
 listen-address=192.168.100.253
 
@@ -14,6 +16,7 @@ no-resolv
 server=1.1.1.1
 server=1.0.0.1
 
+#LOGGING SETTINGS
 log-queries
 log-facility=/var/log/query.log
 cache-size=350

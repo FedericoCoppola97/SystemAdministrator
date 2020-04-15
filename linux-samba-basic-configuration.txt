@@ -1,0 +1,42 @@
+#### Samba server ####
+
+1) Installazione:
+apt update && apt install samba -y
+
+
+2) Creazione della cartella che verrà condivisa
+Ad esempio:  "sudo mkdir /media/disk1/condivisione"
+
+
+3) Permessi alla cartella 
+sudo chmod 777 /media/disk1/condivisione
+
+
+4) Copia di backup file originale di configurazione
+sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.old
+
+
+5) Configurare il file come segue
+
+sudo nano /etc/samba/smb.conf
+
+[global]
+        server role = standalone server
+        map to guest = Bad User
+        usershare allow guests = yes
+        #security
+        hosts allow = 192.168.100.0/24 #attenzione al piano IP, potresti avere una LAN differente
+        hosts deny = 0.0.0.0/0
+
+[condivisione]
+        comment = condivisione
+        path = /media/disk1/condivisione
+        read only = no
+        guest ok = yes
+        force create mode = 0775 #oppure 0777 in base ai permessi
+        force user = user
+        force group = gruppocondivisione
+
+
+6) Riavviare il servizio e provare la share
+service smbd restart
